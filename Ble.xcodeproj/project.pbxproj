@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DC0556E01C77064C0081F081 /* Ble.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0556DF1C77064C0081F081 /* Ble.m */; };
+		DC0556EC1C77149D0081F081 /* AMBouncingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0556E81C77149D0081F081 /* AMBouncingView.m */; };
+		DC0556ED1C77149D0081F081 /* AMSmoothAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0556EB1C77149D0081F081 /* AMSmoothAlertView.m */; };
 		DC37F0711C7625910067B205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC37F0701C7625910067B205 /* main.m */; };
 		DC37F0741C7625910067B205 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC37F0731C7625910067B205 /* AppDelegate.m */; };
 		DC37F0771C7625910067B205 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC37F0761C7625910067B205 /* ViewController.m */; };
@@ -16,6 +19,7 @@
 		DC37F0821C7625910067B205 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC37F0801C7625910067B205 /* LaunchScreen.storyboard */; };
 		DC37F08D1C7625910067B205 /* BleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC37F08C1C7625910067B205 /* BleTests.m */; };
 		DC37F0981C7625910067B205 /* BleUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC37F0971C7625910067B205 /* BleUITests.m */; };
+		DC37F0A81C7639260067B205 /* DeviceListController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC37F0A71C7639260067B205 /* DeviceListController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +40,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DC0556DE1C77064C0081F081 /* Ble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ble.h; sourceTree = "<group>"; };
+		DC0556DF1C77064C0081F081 /* Ble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ble.m; sourceTree = "<group>"; };
+		DC0556E71C77149D0081F081 /* AMBouncingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBouncingView.h; sourceTree = "<group>"; };
+		DC0556E81C77149D0081F081 /* AMBouncingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMBouncingView.m; sourceTree = "<group>"; };
+		DC0556E91C77149D0081F081 /* AMSmoothAlertConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSmoothAlertConstants.h; sourceTree = "<group>"; };
+		DC0556EA1C77149D0081F081 /* AMSmoothAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSmoothAlertView.h; sourceTree = "<group>"; };
+		DC0556EB1C77149D0081F081 /* AMSmoothAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSmoothAlertView.m; sourceTree = "<group>"; };
 		DC37F06C1C7625910067B205 /* Ble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC37F0701C7625910067B205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC37F0721C7625910067B205 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -53,6 +64,8 @@
 		DC37F0931C7625910067B205 /* BleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC37F0971C7625910067B205 /* BleUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BleUITests.m; sourceTree = "<group>"; };
 		DC37F0991C7625910067B205 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC37F0A61C7639260067B205 /* DeviceListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceListController.h; sourceTree = "<group>"; };
+		DC37F0A71C7639260067B205 /* DeviceListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceListController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +93,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DC0556DD1C7706310081F081 /* Hardware */ = {
+			isa = PBXGroup;
+			children = (
+				DC0556DE1C77064C0081F081 /* Ble.h */,
+				DC0556DF1C77064C0081F081 /* Ble.m */,
+			);
+			name = Hardware;
+			sourceTree = "<group>";
+		};
+		DC0556E51C7714700081F081 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				DC0556E61C7714830081F081 /* AMSmoothAlert */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		DC0556E61C7714830081F081 /* AMSmoothAlert */ = {
+			isa = PBXGroup;
+			children = (
+				DC0556E71C77149D0081F081 /* AMBouncingView.h */,
+				DC0556E81C77149D0081F081 /* AMBouncingView.m */,
+				DC0556E91C77149D0081F081 /* AMSmoothAlertConstants.h */,
+				DC0556EA1C77149D0081F081 /* AMSmoothAlertView.h */,
+				DC0556EB1C77149D0081F081 /* AMSmoothAlertView.m */,
+			);
+			name = AMSmoothAlert;
+			sourceTree = "<group>";
+		};
 		DC37F0631C7625910067B205 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +145,9 @@
 		DC37F06E1C7625910067B205 /* Ble */ = {
 			isa = PBXGroup;
 			children = (
+				DC0556E51C7714700081F081 /* Vendor */,
+				DC0556DD1C7706310081F081 /* Hardware */,
+				DC37F0A51C7638EC0067B205 /* DeviceList */,
 				DC37F0721C7625910067B205 /* AppDelegate.h */,
 				DC37F0731C7625910067B205 /* AppDelegate.m */,
 				DC37F0751C7625910067B205 /* ViewController.h */,
@@ -141,6 +186,15 @@
 				DC37F0991C7625910067B205 /* Info.plist */,
 			);
 			path = BleUITests;
+			sourceTree = "<group>";
+		};
+		DC37F0A51C7638EC0067B205 /* DeviceList */ = {
+			isa = PBXGroup;
+			children = (
+				DC37F0A61C7639260067B205 /* DeviceListController.h */,
+				DC37F0A71C7639260067B205 /* DeviceListController.m */,
+			);
+			name = DeviceList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,6 +264,12 @@
 				TargetAttributes = {
 					DC37F06B1C7625910067B205 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = GMD7EK7S94;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					DC37F0871C7625910067B205 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -274,9 +334,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC37F0771C7625910067B205 /* ViewController.m in Sources */,
+				DC0556EC1C77149D0081F081 /* AMBouncingView.m in Sources */,
+				DC0556E01C77064C0081F081 /* Ble.m in Sources */,
 				DC37F0741C7625910067B205 /* AppDelegate.m in Sources */,
 				DC37F0711C7625910067B205 /* main.m in Sources */,
 				DC37F07D1C7625910067B205 /* Ble.xcdatamodeld in Sources */,
+				DC37F0A81C7639260067B205 /* DeviceListController.m in Sources */,
+				DC0556ED1C77149D0081F081 /* AMSmoothAlertView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,7 +481,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Ble",
+				);
 				INFOPLIST_FILE = Ble/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JonFir.Ble;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,7 +498,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Ble",
+				);
 				INFOPLIST_FILE = Ble/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = JonFir.Ble;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -502,6 +578,7 @@
 				DC37F09E1C7625910067B205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DC37F09F1C7625910067B205 /* Build configuration list for PBXNativeTarget "BleTests" */ = {
 			isa = XCConfigurationList;
@@ -510,6 +587,7 @@
 				DC37F0A11C7625910067B205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DC37F0A21C7625910067B205 /* Build configuration list for PBXNativeTarget "BleUITests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +596,7 @@
 				DC37F0A41C7625910067B205 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
