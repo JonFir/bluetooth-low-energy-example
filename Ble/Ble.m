@@ -7,8 +7,8 @@
 //
 
 #import "Ble.h"
-//#import "DeviceListController.h"
 #import "AMSmoothAlertView.h"
+#import "CoreData.h"
 
 @implementation Ble
 
@@ -27,8 +27,8 @@
 
 - (id)init {
     if (self = [super init]) {
+        
         bleManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil options:nil];
-        devices = [[NSMutableSet alloc ]init];
     }
     return self;
 }
@@ -37,14 +37,7 @@
     // Should never be called, but just here for clarity really.
 }
 
--(void)startScan{
-    [devices removeAllObjects];
-    [bleManager scanForPeripheralsWithServices:nil options:nil];
-}
 
--(void)stopScan{
-    [bleManager stopScan];
-}
 
 
 #pragma mark CBCentralManagerDelegate Methods
@@ -68,7 +61,21 @@
 
 
 -(void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI{
-    [[self deviceListDelegate] addNewDevice:peripheral];
+    if ([[UIApplication sharedApplication] applicationState] != UIApplicationStateActive){
+        CoreData* coreData = [[CoreData alloc] init];
+        NSDate* prevDate = [coreData saveDevice:peripheral.name UUID:peripheral.identifier.UUIDString date:[NSDate date]];
+        if (prevDate) {
+            NSTimeInterval interval = [prevDate timeIntervalSinceDate:[NSDate date]];
+            if ((interval / 60) < 10){
+                return;
+            }
+        }
+        [self showNotifiaction:peripheral.name];
+    }else{
+        [[self deviceListDelegate] addNewDevice:peripheral RSSI:RSSI];
+    }
+    
+    
 }
 
 -(void)showBleAllert: (NSString *) message{
@@ -80,5 +87,48 @@
     [alertView dismissAlertView];
 }
 
+#pragma mark CBCentralManager Methods
+
+-(void)connectPeripheral:(CBPeripheral*)device{
+    [bleManager connectPeripheral:device options:nil];
+}
+
+-(void)disconnectPeripheral:(CBPeripheral *)device{
+    [bleManager cancelPeripheralConnection:device];
+}
+
+-(void)startScan{
+    
+    NSLog(@"start");
+
+//
+    NSArray* serviceUUIDs = @[
+                              [CBUUID UUIDWithString:@"1811"],
+                              [CBUUID UUIDWithString:@"180F"],
+                              [CBUUID UUIDWithString:@"1810"],
+                              [CBUUID UUIDWithString:@"181B"],
+                              [CBUUID UUIDWithString:@"1805"],
+                              [CBUUID UUIDWithString:@"1818"],
+                              [CBUUID UUIDWithString:@"1812"],
+                              [CBUUID UUIDWithString:@"1810"],
+                              [CBUUID UUIDWithString:@"1823"],
+                              [CBUUID UUIDWithString:@"180D"]
+                              ];
+    [bleManager scanForPeripheralsWithServices:serviceUUIDs options:nil];
+}
+
+-(void)stopScan{
+    [bleManager stopScan];
+}
+
+
+-(void)showNotifiaction:(NSString*)name{
+    UIApplication*    application = [UIApplication sharedApplication];
+    UILocalNotification *notification = [[UILocalNotification alloc]init];
+    [notification setAlertBody:[NSString stringWithFormat:@"New Device Finded - %@",name]];
+    [notification setSoundName:UILocalNotificationDefaultSoundName];
+    [notification setFireDate:[NSDate dateWithTimeIntervalSinceNow:1]];
+    [application setScheduledLocalNotifications:[NSArray arrayWithObject:notification]];
+}
 
 @end

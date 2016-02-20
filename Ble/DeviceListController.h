@@ -11,6 +11,7 @@
 
 @interface DeviceListController : UITableViewController <UITableViewDataSource, UITableViewDelegate, DeviceListDelegate>{
     NSMutableArray* devices;
+    NSMutableArray* rssis;
 }
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *ScanIndicator;

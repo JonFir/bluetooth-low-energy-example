@@ -12,14 +12,13 @@
 
 @protocol DeviceListDelegate <NSObject>
 
-- (void)addNewDevice:(CBPeripheral*)device;
+- (void)addNewDevice:(CBPeripheral*)device RSSI:(NSNumber *)RSSI;
 
 @end
 
 @interface Ble : NSObject<CBCentralManagerDelegate>{
     CBCentralManager *bleManager;
     AMSmoothAlertView * alertView;
-    NSMutableSet *devices;
 }
 
 @property (weak, nonatomic) id<DeviceListDelegate> deviceListDelegate;
@@ -27,5 +26,8 @@
 + (id)sharedManager;
 - (void) startScan;
 - (void) stopScan;
+- (void) connectPeripheral:(CBPeripheral*)device;
+- (void) disconnectPeripheral:(CBPeripheral*)device;
+- (void) showNotifiaction:(NSString*)name;
 
 @end

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B42D26AB1C775FCD00A7F828 /* ServicesListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B42D26AA1C775FCD00A7F828 /* ServicesListController.m */; };
+		B4BC5F7D1C77919600590526 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC5F7C1C77919600590526 /* SettingsController.m */; };
+		B4BC5F801C77C29100590526 /* CoreData.m in Sources */ = {isa = PBXBuildFile; fileRef = B4BC5F7F1C77C29100590526 /* CoreData.m */; };
 		DC0556E01C77064C0081F081 /* Ble.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0556DF1C77064C0081F081 /* Ble.m */; };
 		DC0556EC1C77149D0081F081 /* AMBouncingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0556E81C77149D0081F081 /* AMBouncingView.m */; };
 		DC0556ED1C77149D0081F081 /* AMSmoothAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0556EB1C77149D0081F081 /* AMSmoothAlertView.m */; };
@@ -40,6 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B42D26A91C775FCD00A7F828 /* ServicesListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServicesListController.h; sourceTree = "<group>"; };
+		B42D26AA1C775FCD00A7F828 /* ServicesListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServicesListController.m; sourceTree = "<group>"; };
+		B4BC5F7B1C77919600590526 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
+		B4BC5F7C1C77919600590526 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
+		B4BC5F7E1C77C29100590526 /* CoreData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreData.h; sourceTree = "<group>"; };
+		B4BC5F7F1C77C29100590526 /* CoreData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreData.m; sourceTree = "<group>"; };
 		DC0556DE1C77064C0081F081 /* Ble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ble.h; sourceTree = "<group>"; };
 		DC0556DF1C77064C0081F081 /* Ble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ble.m; sourceTree = "<group>"; };
 		DC0556E71C77149D0081F081 /* AMBouncingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMBouncingView.h; sourceTree = "<group>"; };
@@ -93,6 +102,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B42D26A81C775F9200A7F828 /* ServicesList */ = {
+			isa = PBXGroup;
+			children = (
+				B42D26A91C775FCD00A7F828 /* ServicesListController.h */,
+				B42D26AA1C775FCD00A7F828 /* ServicesListController.m */,
+			);
+			name = ServicesList;
+			sourceTree = "<group>";
+		};
+		B4BC5F7A1C77917600590526 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				B4BC5F7B1C77919600590526 /* SettingsController.h */,
+				B4BC5F7C1C77919600590526 /* SettingsController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		DC0556DD1C7706310081F081 /* Hardware */ = {
 			isa = PBXGroup;
 			children = (
@@ -145,9 +172,11 @@
 		DC37F06E1C7625910067B205 /* Ble */ = {
 			isa = PBXGroup;
 			children = (
+				B4BC5F7A1C77917600590526 /* Settings */,
 				DC0556E51C7714700081F081 /* Vendor */,
 				DC0556DD1C7706310081F081 /* Hardware */,
 				DC37F0A51C7638EC0067B205 /* DeviceList */,
+				B42D26A81C775F9200A7F828 /* ServicesList */,
 				DC37F0721C7625910067B205 /* AppDelegate.h */,
 				DC37F0731C7625910067B205 /* AppDelegate.m */,
 				DC37F0751C7625910067B205 /* ViewController.h */,
@@ -158,6 +187,8 @@
 				DC37F0831C7625910067B205 /* Info.plist */,
 				DC37F07B1C7625910067B205 /* Ble.xcdatamodeld */,
 				DC37F06F1C7625910067B205 /* Supporting Files */,
+				B4BC5F7E1C77C29100590526 /* CoreData.h */,
+				B4BC5F7F1C77C29100590526 /* CoreData.m */,
 			);
 			path = Ble;
 			sourceTree = "<group>";
@@ -334,6 +365,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC37F0771C7625910067B205 /* ViewController.m in Sources */,
+				B42D26AB1C775FCD00A7F828 /* ServicesListController.m in Sources */,
+				B4BC5F7D1C77919600590526 /* SettingsController.m in Sources */,
+				B4BC5F801C77C29100590526 /* CoreData.m in Sources */,
 				DC0556EC1C77149D0081F081 /* AMBouncingView.m in Sources */,
 				DC0556E01C77064C0081F081 /* Ble.m in Sources */,
 				DC37F0741C7625910067B205 /* AppDelegate.m in Sources */,

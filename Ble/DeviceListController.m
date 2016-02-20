@@ -7,6 +7,7 @@
 //
 
 #import "DeviceListController.h"
+#import "ServicesListController.h"
 
 
 @implementation DeviceListController
@@ -18,6 +19,7 @@
     [[self tableView] setDelegate:self];
     [[self tableView] setDataSource:self];
     devices = [[NSMutableArray alloc] init];
+    rssis = [[NSMutableArray alloc] init];
     [[Ble sharedManager] setDeviceListDelegate:self];
     
 }
@@ -28,7 +30,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceListCell" forIndexPath:indexPath];
+    CBPeripheral* device = [devices objectAtIndex:indexPath.row];
     
+    UILabel* rssi = (UILabel*)[cell viewWithTag:3];
+    UILabel* name = (UILabel*)[cell viewWithTag:2];
+    UILabel* services = (UILabel*)[cell viewWithTag:4];
+    
+    NSString* rssiValue = [NSString stringWithFormat:@"%@ db", [rssis objectAtIndex:indexPath.row]];
+    [rssi setText: rssiValue];
+    
+    [name setText:device.name];
+
+    NSString* servisesValue = [NSString stringWithFormat:@"%lu servises", device.services.count];
+    [services setText:servisesValue];
     return cell;
 }
 
@@ -54,11 +68,20 @@
     [ScanButton setSelected:NO];
 }
 
-- (void)addNewDevice:(CBPeripheral*) device{
+- (void)addNewDevice:(CBPeripheral*) device RSSI:(NSNumber *)RSSI{
     [devices addObject:device];
+    [rssis addObject:RSSI];
     NSIndexPath* indexPath = [NSIndexPath indexPathForItem:[devices count] - 1 inSection:0];
     NSArray* ipArray = [NSArray arrayWithObject:indexPath];
     [[self tableView] insertRowsAtIndexPaths:ipArray withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([[segue identifier] isEqualToString:@"fDeviceListTServiceList"]){
+        ServicesListController* controller = [segue destinationViewController];
+        NSIndexPath* indexPath = [[self tableView] indexPathForSelectedRow];
+        [controller setDevice:[devices objectAtIndex:indexPath.row]];
+    }
 }
 
 
