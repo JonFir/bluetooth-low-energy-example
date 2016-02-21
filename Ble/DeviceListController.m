@@ -18,8 +18,11 @@
     [super viewDidLoad];
     [[self tableView] setDelegate:self];
     [[self tableView] setDataSource:self];
+    
     devices = [[NSMutableArray alloc] init];
     rssis = [[NSMutableArray alloc] init];
+    servicesCount = [[NSMutableArray alloc] init];
+    
     [[Ble sharedManager] setDeviceListDelegate:self];
     
 }
@@ -40,8 +43,8 @@
     [rssi setText: rssiValue];
     
     [name setText:device.name];
-
-    NSString* servisesValue = [NSString stringWithFormat:@"%lu servises", device.services.count];
+    
+    NSString* servisesValue = [NSString stringWithFormat:@"%@ servises", [servicesCount objectAtIndex:indexPath.row]];
     [services setText:servisesValue];
     return cell;
 }
@@ -52,28 +55,35 @@
     }else{
         [self stopScan];
     }
+    [ScanButton setSelected:!ScanButton.selected];
 }
 
 -(void)startScan{
     [devices removeAllObjects];
+    [rssis removeAllObjects];
+    [servicesCount removeAllObjects];
+    
     [[self tableView] reloadData];
     [[Ble sharedManager] startScan];
     [ScanIndicator startAnimating];
-    [ScanButton setSelected:YES];
 }
 
 -(void)stopScan{
-    [[Ble sharedManager] startScan];
+    [[Ble sharedManager] stopScan];
     [ScanIndicator stopAnimating];
-    [ScanButton setSelected:NO];
 }
 
-- (void)addNewDevice:(CBPeripheral*) device RSSI:(NSNumber *)RSSI{
+- (void)addNewDevice:(CBPeripheral*) device RSSI:(NSNumber *)RSSI serviceCount:(NSNumber*)serviceCount{
     [devices addObject:device];
     [rssis addObject:RSSI];
+    [servicesCount addObject:serviceCount];
     NSIndexPath* indexPath = [NSIndexPath indexPathForItem:[devices count] - 1 inSection:0];
     NSArray* ipArray = [NSArray arrayWithObject:indexPath];
     [[self tableView] insertRowsAtIndexPaths:ipArray withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+-(void)deviceDiconnected{
+    [[self navigationController] popToRootViewControllerAnimated:YES];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

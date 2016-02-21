@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Ble.h"
 
-@interface ServicesListController : UITableViewController
+@interface ServicesListController : UITableViewController<UITableViewDataSource, UITableViewDelegate, DeviceDelegate>{
+    NSArray* services;
+}
 
 @property (strong, nonatomic) CBPeripheral* device;
 

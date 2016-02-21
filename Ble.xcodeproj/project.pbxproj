@@ -13,6 +13,8 @@
 		DC0556E01C77064C0081F081 /* Ble.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0556DF1C77064C0081F081 /* Ble.m */; };
 		DC0556EC1C77149D0081F081 /* AMBouncingView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0556E81C77149D0081F081 /* AMBouncingView.m */; };
 		DC0556ED1C77149D0081F081 /* AMSmoothAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0556EB1C77149D0081F081 /* AMSmoothAlertView.m */; };
+		DC07388E1C78B05800D0B79A /* CharacteristicsListController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC07388D1C78B05800D0B79A /* CharacteristicsListController.m */; };
+		DC0738921C78CABA00D0B79A /* CharacteristicController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0738911C78CABA00D0B79A /* CharacteristicController.m */; };
 		DC37F0711C7625910067B205 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC37F0701C7625910067B205 /* main.m */; };
 		DC37F0741C7625910067B205 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC37F0731C7625910067B205 /* AppDelegate.m */; };
 		DC37F0771C7625910067B205 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC37F0761C7625910067B205 /* ViewController.m */; };
@@ -56,6 +58,10 @@
 		DC0556E91C77149D0081F081 /* AMSmoothAlertConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSmoothAlertConstants.h; sourceTree = "<group>"; };
 		DC0556EA1C77149D0081F081 /* AMSmoothAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMSmoothAlertView.h; sourceTree = "<group>"; };
 		DC0556EB1C77149D0081F081 /* AMSmoothAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMSmoothAlertView.m; sourceTree = "<group>"; };
+		DC07388C1C78B05800D0B79A /* CharacteristicsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicsListController.h; sourceTree = "<group>"; };
+		DC07388D1C78B05800D0B79A /* CharacteristicsListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicsListController.m; sourceTree = "<group>"; };
+		DC0738901C78CABA00D0B79A /* CharacteristicController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacteristicController.h; sourceTree = "<group>"; };
+		DC0738911C78CABA00D0B79A /* CharacteristicController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacteristicController.m; sourceTree = "<group>"; };
 		DC37F06C1C7625910067B205 /* Ble.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ble.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC37F0701C7625910067B205 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC37F0721C7625910067B205 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -149,6 +155,24 @@
 			name = AMSmoothAlert;
 			sourceTree = "<group>";
 		};
+		DC07388B1C78AFF700D0B79A /* CharacteristicsList */ = {
+			isa = PBXGroup;
+			children = (
+				DC07388C1C78B05800D0B79A /* CharacteristicsListController.h */,
+				DC07388D1C78B05800D0B79A /* CharacteristicsListController.m */,
+			);
+			name = CharacteristicsList;
+			sourceTree = "<group>";
+		};
+		DC07388F1C78CA8C00D0B79A /* Characteristic */ = {
+			isa = PBXGroup;
+			children = (
+				DC0738901C78CABA00D0B79A /* CharacteristicController.h */,
+				DC0738911C78CABA00D0B79A /* CharacteristicController.m */,
+			);
+			name = Characteristic;
+			sourceTree = "<group>";
+		};
 		DC37F0631C7625910067B205 = {
 			isa = PBXGroup;
 			children = (
@@ -172,11 +196,13 @@
 		DC37F06E1C7625910067B205 /* Ble */ = {
 			isa = PBXGroup;
 			children = (
+				DC07388F1C78CA8C00D0B79A /* Characteristic */,
 				B4BC5F7A1C77917600590526 /* Settings */,
 				DC0556E51C7714700081F081 /* Vendor */,
 				DC0556DD1C7706310081F081 /* Hardware */,
 				DC37F0A51C7638EC0067B205 /* DeviceList */,
 				B42D26A81C775F9200A7F828 /* ServicesList */,
+				DC07388B1C78AFF700D0B79A /* CharacteristicsList */,
 				DC37F0721C7625910067B205 /* AppDelegate.h */,
 				DC37F0731C7625910067B205 /* AppDelegate.m */,
 				DC37F0751C7625910067B205 /* ViewController.h */,
@@ -370,6 +396,8 @@
 				B4BC5F801C77C29100590526 /* CoreData.m in Sources */,
 				DC0556EC1C77149D0081F081 /* AMBouncingView.m in Sources */,
 				DC0556E01C77064C0081F081 /* Ble.m in Sources */,
+				DC07388E1C78B05800D0B79A /* CharacteristicsListController.m in Sources */,
+				DC0738921C78CABA00D0B79A /* CharacteristicController.m in Sources */,
 				DC37F0741C7625910067B205 /* AppDelegate.m in Sources */,
 				DC37F0711C7625910067B205 /* main.m in Sources */,
 				DC37F07D1C7625910067B205 /* Ble.xcdatamodeld in Sources */,
