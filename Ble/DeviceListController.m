@@ -20,8 +20,6 @@
     [[self tableView] setDataSource:self];
     
     devices = [[NSMutableArray alloc] init];
-    rssis = [[NSMutableArray alloc] init];
-    servicesCount = [[NSMutableArray alloc] init];
     
     [[Ble sharedManager] setDeviceListDelegate:self];
     
@@ -33,18 +31,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceListCell" forIndexPath:indexPath];
-    CBPeripheral* device = [devices objectAtIndex:indexPath.row];
+    NSDictionary* device = [devices objectAtIndex:indexPath.row];
     
     UILabel* rssi = (UILabel*)[cell viewWithTag:3];
     UILabel* name = (UILabel*)[cell viewWithTag:2];
     UILabel* services = (UILabel*)[cell viewWithTag:4];
     
-    NSString* rssiValue = [NSString stringWithFormat:@"%@ db", [rssis objectAtIndex:indexPath.row]];
+    NSString* rssiValue = [NSString stringWithFormat:@"%@ db", [device objectForKey:@"rssi"]];
     [rssi setText: rssiValue];
     
-    [name setText:device.name];
+    [name setText:[[device objectForKey:@"peripheral"] name]];
     
-    NSString* servisesValue = [NSString stringWithFormat:@"%@ servises", [servicesCount objectAtIndex:indexPath.row]];
+    NSString* servisesValue = [NSString stringWithFormat:@"%@ servises", [device objectForKey:@"serviceCount"]];
     [services setText:servisesValue];
     return cell;
 }
@@ -59,13 +57,11 @@
 }
 
 -(void)startScan{
+    [ScanIndicator startAnimating];
     [devices removeAllObjects];
-    [rssis removeAllObjects];
-    [servicesCount removeAllObjects];
-    
     [[self tableView] reloadData];
     [[Ble sharedManager] startScan];
-    [ScanIndicator startAnimating];
+    
 }
 
 -(void)stopScan{
@@ -74,9 +70,12 @@
 }
 
 - (void)addNewDevice:(CBPeripheral*) device RSSI:(NSNumber *)RSSI serviceCount:(NSNumber*)serviceCount{
-    [devices addObject:device];
-    [rssis addObject:RSSI];
-    [servicesCount addObject:serviceCount];
+    
+    
+    
+    NSDictionary * element = @{@"peripheral": device, @"rssi": RSSI, @"serviceCount": serviceCount};
+    
+    [devices addObject:element];
     NSIndexPath* indexPath = [NSIndexPath indexPathForItem:[devices count] - 1 inSection:0];
     NSArray* ipArray = [NSArray arrayWithObject:indexPath];
     [[self tableView] insertRowsAtIndexPaths:ipArray withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -90,9 +89,11 @@
     if ([[segue identifier] isEqualToString:@"fDeviceListTServiceList"]){
         ServicesListController* controller = [segue destinationViewController];
         NSIndexPath* indexPath = [[self tableView] indexPathForSelectedRow];
-        [controller setDevice:[devices objectAtIndex:indexPath.row]];
+        NSDictionary * device = [devices objectAtIndex:indexPath.row];
+        [controller setDevice:[device objectForKey:@"peripheral"]];
     }
 }
+
 
 
 @end

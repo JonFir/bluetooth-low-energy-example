@@ -14,7 +14,7 @@
 
 -(void)viewDidLoad{
     [super viewDidLoad];
-    self.title = device.name;
+    [self setTitle:[device name]];
     self.navigationItem.prompt = [NSString stringWithFormat:@"UUID %@", device.identifier.UUIDString];
     services = [[NSArray alloc] init];
     [self conectDevice];

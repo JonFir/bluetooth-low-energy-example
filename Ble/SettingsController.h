@@ -16,6 +16,7 @@
 
 -(void)saveSettings;
 -(void)loadSettings;
+-(void)loadDevices;
 
 
 @end

@@ -19,28 +19,20 @@
     [super viewDidLoad];
     [self loadSettings];
     [self setTitle:@"Background settings"];
-    
-    CoreData* coreData = [[CoreData alloc] init];
-    devices = [coreData loadDevices];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [[NSNotificationCenter defaultCenter]addObserver:self
+                                            selector:@selector(loadDevices)
+                                                name:UIApplicationDidBecomeActiveNotification
+                                              object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    CoreData* coreData = [[CoreData alloc] init];
-    devices = [coreData loadDevices];
-    [[self tableView] reloadData];
+    [self loadDevices];
+
 }
 
 #pragma mark - Table view data source
@@ -76,17 +68,6 @@
     return cell;
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (IBAction)ScanCheckBoxChanged:(id)sender {
     [self saveSettings];
 }
@@ -101,5 +82,13 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     [_ScanCheckBox setOn:[userDefaults boolForKey:@"backgroundScanEnabled"]];
 }
+
+-(void)loadDevices{
+    CoreData* coreData = [[CoreData alloc] init];
+    devices = [coreData loadDevices];
+    [[self tableView] reloadData];
+}
+
+
 
 @end

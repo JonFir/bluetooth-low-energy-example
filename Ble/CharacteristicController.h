@@ -23,4 +23,5 @@
 
 - (void) readCharacteristic;
 - (NSData*) nsDataFormNSString:(NSString*)string;
+- (void) saveText;
 @end

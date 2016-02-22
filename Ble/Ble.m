@@ -44,6 +44,31 @@
             [CBUUID UUIDWithString:@"1823"],
             [CBUUID UUIDWithString:@"180D"],
             [CBUUID UUIDWithString:@"FEE0"]
+         /*   [CBUUID UUIDWithString:@"1815"],
+            [CBUUID UUIDWithString:@"181E"],
+            [CBUUID UUIDWithString:@"181F"],
+            [CBUUID UUIDWithString:@"1816"],
+            [CBUUID UUIDWithString:@"180A"],
+            [CBUUID UUIDWithString:@"181A"],
+            [CBUUID UUIDWithString:@"1800"],
+            [CBUUID UUIDWithString:@"1801"],
+            [CBUUID UUIDWithString:@"1808"],
+            [CBUUID UUIDWithString:@"1809"],
+            [CBUUID UUIDWithString:@"1802"],
+            [CBUUID UUIDWithString:@"1821"],
+            [CBUUID UUIDWithString:@"1820"],
+            [CBUUID UUIDWithString:@"1803"],
+            [CBUUID UUIDWithString:@"1807"],
+            [CBUUID UUIDWithString:@"1825"],
+            [CBUUID UUIDWithString:@"180E"],
+            [CBUUID UUIDWithString:@"1822"],
+            [CBUUID UUIDWithString:@"1806"],
+            [CBUUID UUIDWithString:@"1814"],
+            [CBUUID UUIDWithString:@"1813"],
+            [CBUUID UUIDWithString:@"1824"],
+            [CBUUID UUIDWithString:@"1804"],
+            [CBUUID UUIDWithString:@"181C"],
+            [CBUUID UUIDWithString:@"181D"] */
         ];
     }
     return self;
@@ -86,13 +111,14 @@
         CoreData* coreData = [[CoreData alloc] init];
         NSDate* prevDate = [coreData saveDevice:peripheral.name UUID:peripheral.identifier.UUIDString date:[NSDate date]];
         if (prevDate) {
-            NSTimeInterval interval = [prevDate timeIntervalSinceDate:[NSDate date]];
+            NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:prevDate];
             if ((interval / 60) < 10){
                 return;
             }
         }
         [self showNotifiaction:peripheral.name];
     }else{
+        NSLog(@"4");
         NSNumber *serviceCount = [NSNumber numberWithUnsignedLong:[[advertisementData objectForKey:@"kCBAdvDataServiceUUIDs"] count]];
         [[self deviceListDelegate] addNewDevice:peripheral RSSI:RSSI serviceCount:serviceCount];
     }
@@ -117,8 +143,6 @@
     [alert show];
     
 }
-
-
 
 
 -(void)showBleAllert: (NSString *) message forAlertType:(AlertType) alertType {
@@ -151,11 +175,11 @@
 
 -(void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error{
     [[self deviceCharacteristicDelegate] addCharacteristics:service.characteristics];
+    [alertView dismissAlertView];
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
-    NSLog(@"%@", characteristic);
-    NSLog(@"%@", error);
+    NSLog(@"%@",error);
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
@@ -163,20 +187,17 @@
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
-    NSLog(@"%@", characteristic);
-    NSLog(@"%@", error);
+    NSLog(@"%@",error);
 }
 
 -(void)findCharacteristics:(CBService *)service device:(CBPeripheral *)device {
     [device discoverCharacteristics:nil forService:service];
+    [self showBleAllert:@"Find characteristics on device. Please wait." forAlertType:AlertInfo];
 }
 
 -(void)readCharacteristic:(CBCharacteristic *)characteristic device:(CBPeripheral *)device{
     [device readValueForCharacteristic:characteristic];
 }
-
-
-
 
 -(void)showNotifiaction:(NSString*)name{
     UIApplication*    application = [UIApplication sharedApplication];

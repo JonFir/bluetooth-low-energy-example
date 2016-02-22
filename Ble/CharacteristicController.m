@@ -44,15 +44,21 @@
 
 - (IBAction)SubscribButtonPressed:(id)sender {
     BOOL value = ![[self subscribButton] isSelected];
-    NSLog(@"%@", value ? @"YES1" : @"NO1");
-    [device setNotifyValue:YES forCharacteristic:[self characteristic]];
+    [device setNotifyValue:value forCharacteristic:[self characteristic]];
     [[self subscribButton] setSelected:![[self subscribButton] isSelected]];
 }
 
 - (IBAction)saveButtonPressed:(id)sender {
+    [self saveText];
+}
+
+-(void)saveText{
     CBCharacteristicWriteType type = [[self characteristic] properties] & CBCharacteristicPropertyWrite ? CBCharacteristicWriteWithResponse : CBCharacteristicWriteWithoutResponse;
     NSData* dataToWrite = [self nsDataFormNSString:[[self valueInput] text]];
     [device writeValue:dataToWrite forCharacteristic:[self characteristic] type:type];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:[NSString stringWithFormat:@"Data writed to device"] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+    [alert show];
 }
 
 -(void)readCharacteristic{
@@ -75,7 +81,6 @@
     }
     
     [[self subscribButton] setSelected:[[self characteristic] isNotifying]];
-    NSLog(@"%@", characteristic);
 }
 
 
@@ -93,14 +98,17 @@
     return data;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    NSString* regex = @"[^0-9]";
+    
+    if ([text isEqualToString:@"\n"])
+    {
+        [textView resignFirstResponder];
+        [self saveText];
+    }
+    
+    return ([[text lowercaseString] rangeOfString: regex
+                                            options:NSRegularExpressionSearch].location == NSNotFound);
 }
-*/
 
 @end
