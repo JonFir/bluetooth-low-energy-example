@@ -183,7 +183,7 @@
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{
-    [[self characteristicDelegate] updateValue:[characteristic value]];
+    [[self characteristicDelegate] updateValue:[characteristic value] forCharacteristic:characteristic];
 }
 
 -(void)peripheral:(CBPeripheral *)peripheral didUpdateNotificationStateForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error{

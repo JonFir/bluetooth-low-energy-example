@@ -38,7 +38,10 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)updateValue:(NSData *)newValue{
+-(void)updateValue:(NSData *)newValue forCharacteristic:(CBCharacteristic *)forCharacteristic{
+    if (forCharacteristic != [self characteristic]){
+        return;
+    }
     [[self valueInput] setText:[NSString stringWithFormat:@"%@", newValue]];
 }
 

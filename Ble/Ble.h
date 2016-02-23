@@ -32,7 +32,7 @@
 
 @protocol CharacteristicDelegate <NSObject>
 
-- (void)updateValue:(NSData*)newValue;
+- (void)updateValue:(NSData*)newValue forCharacteristic:(CBCharacteristic*)forCharacteristic;
 
 @end
 
